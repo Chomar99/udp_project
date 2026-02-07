@@ -1,0 +1,302 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║     UDP REAL-TIME MESSAGING & FILE SHARING SYSTEM                ║
+║     Production-Level Java Application                            ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════
+  QUICK START GUIDE
+═══════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────┐
+│ OPTION 1: Automatic Quick Start (Recommended)                  │
+└─────────────────────────────────────────────────────────────────┘
+
+  1. Double-click:  quickstart.bat
+  
+  This will automatically:
+     ✓ Compile all Java files
+     ✓ Start the server in a new window
+     ✓ Start 3 clients (Alice, Bob, Charlie) in separate windows
+  
+  Then start chatting and sharing files!
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│ OPTION 2: Manual Step-by-Step                                  │
+└─────────────────────────────────────────────────────────────────┘
+
+  Step 1: Compile
+  ---------------
+  Double-click:  compile.bat
+  
+  Step 2: Start Server
+  --------------------
+  Double-click:  run-server.bat
+  
+  Step 3: Start Clients (open multiple times)
+  -------------------------------------------
+  Double-click:  run-client.bat
+  Enter names: Alice, Bob, Charlie (or any names you want)
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│ OPTION 3: Using PowerShell / Command Line                      │
+└─────────────────────────────────────────────────────────────────┘
+
+  # Open PowerShell and navigate to project directory
+  cd "c:\Users\basse\OneDrive\Bureau\bisbis"
+  
+  # Compile
+  javac src\*.java
+  
+  # Terminal 1 - Start Server
+  java -cp src Server
+  
+  # Terminal 2 - Start Client 1
+  java -cp src Client Alice
+  
+  # Terminal 3 - Start Client 2
+  java -cp src Client Bob
+  
+  # Terminal 4 - Start Client 3
+  java -cp src Client Charlie
+
+
+═══════════════════════════════════════════════════════════════════
+  USING THE APPLICATION
+═══════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────┐
+│ Basic Commands                                                  │
+└─────────────────────────────────────────────────────────────────┘
+
+  Send Message:
+  -------------
+  Just type your message and press Enter
+  
+  Example:
+    Alice > Hello everyone!
+  
+  Result: Bob and Charlie see: [Alice]: Hello everyone!
+
+
+  Send File:
+  ----------
+  /file <filepath>
+  
+  Example:
+    Alice > /file test-file.txt
+    Alice > /file C:\Users\basse\Pictures\photo.jpg
+  
+  Result: File sent to all clients, saved in received_files/
+
+
+  View Online Users:
+  ------------------
+  /users
+  
+  Shows all currently connected clients
+
+
+  Get Help:
+  ---------
+  /help
+  
+  Shows command reference
+
+
+  Exit:
+  -----
+  /quit
+  
+  Disconnects and closes the client
+
+
+═══════════════════════════════════════════════════════════════════
+  EXAMPLE USAGE SESSION
+═══════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────┐
+│ Alice's Console                                                 │
+└─────────────────────────────────────────────────────────────────┘
+
+  Alice > Hello Bob and Charlie!
+  [You]: Hello Bob and Charlie!
+  
+  [Bob]: Hi Alice!
+  
+  Alice > /file test-file.txt
+  [FILE] Preparing to send: test-file.txt
+  [FILE] Starting transfer: test-file.txt
+  [FILE] Transfer completed: test-file.txt
+  
+  Alice > /users
+  ╔════════════════════════════════════════════╗
+  ║         Online Users                       ║
+  ╠════════════════════════════════════════════╣
+  ║  • Bob                                     ║
+  ║  • Charlie                                 ║
+  ╚════════════════════════════════════════════╝
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│ Bob's Console                                                   │
+└─────────────────────────────────────────────────────────────────┘
+
+  [Alice]: Hello Bob and Charlie!
+  
+  Bob > Hi Alice!
+  [You]: Hi Alice!
+  
+  [FILE] Alice is sending: test-file.txt (622 bytes)
+  [FILE] File received successfully: received_files\test-file.txt
+
+
+═══════════════════════════════════════════════════════════════════
+  FILE LOCATIONS
+═══════════════════════════════════════════════════════════════════
+
+  Sent Files:
+  -----------
+  Can be anywhere on your system
+  Example: test-file.txt (provided in project directory)
+  
+  Received Files:
+  ---------------
+  Automatically saved to: received_files\
+  Created automatically in the project directory
+
+
+═══════════════════════════════════════════════════════════════════
+  TESTING SCENARIOS
+═══════════════════════════════════════════════════════════════════
+
+  ✓ Test 1: Message Broadcasting
+    - Start server + 3 clients
+    - Send messages from each client
+    - Verify all clients receive all messages
+  
+  ✓ Test 2: File Sharing
+    - Send test-file.txt from one client
+    - Check received_files\ on other clients
+    - Verify file content is identical
+  
+  ✓ Test 3: Large File Transfer
+    - Create a 5MB file
+    - Send it using /file command
+    - Monitor progress indicators
+  
+  ✓ Test 4: Client Disconnection
+    - Start server + 3 clients
+    - Close one client (Ctrl+C or /quit)
+    - Type /users on another client
+    - Verify disconnected client removed after 15 seconds
+
+
+═══════════════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════
+
+  Problem: "javac is not recognized"
+  Solution: Install Java JDK and add to PATH
+  
+  Problem: "Port already in use"
+  Solution: Close previous server instance or restart computer
+  
+  Problem: "File not found"
+  Solution: Use full path or place file in project directory
+  
+  Problem: Clients can't connect
+  Solution: 
+    1. Ensure server is running first
+    2. Check Windows Firewall settings
+    3. Allow Java through firewall
+
+
+═══════════════════════════════════════════════════════════════════
+  TECHNICAL SPECIFICATIONS
+═══════════════════════════════════════════════════════════════════
+
+  Protocol:           UDP (User Datagram Protocol)
+  Server Port:        9876
+  Client Ports:       Random available ports
+  Heartbeat:          Every 5 seconds
+  Timeout:            15 seconds
+  Max Chunk Size:     1024 bytes
+  Max UDP Packet:     65507 bytes
+  File Storage:       received_files/
+  
+  Message Types:
+    - REGISTER        Client registration
+    - HEARTBEAT       Keep-alive ping
+    - MSG             Text message
+    - FILE_START      File transfer initiation
+    - FILE_CHUNK      File data chunk
+    - FILE_END        File transfer completion
+    - ACK             Acknowledgment
+    - FILE_ACK        File chunk acknowledgment
+    - CLIENT_LIST     Online users list
+
+
+═══════════════════════════════════════════════════════════════════
+  FEATURES
+═══════════════════════════════════════════════════════════════════
+
+  ✓ Real-time messaging between multiple clients
+  ✓ Broadcast to all connected clients
+  ✓ File sharing (any file type: images, PDF, documents, etc.)
+  ✓ UDP with reliability layer (ACK + retransmission)
+  ✓ File chunking (1024-byte segments)
+  ✓ Progress tracking for file transfers
+  ✓ Client registration and discovery
+  ✓ Heartbeat monitoring (5-second interval)
+  ✓ Automatic client timeout detection (15 seconds)
+  ✓ Multi-threaded architecture
+  ✓ Thread-safe operations
+  ✓ Console-based UI with commands
+  ✓ Production-level error handling
+  ✓ Clean object-oriented design
+
+
+═══════════════════════════════════════════════════════════════════
+  PROJECT STRUCTURE
+═══════════════════════════════════════════════════════════════════
+
+  bisbis/
+  ├── src/
+  │   ├── PacketProtocol.java    # Protocol definitions
+  │   ├── FileManager.java         # File handling
+  │   ├── Server.java              # UDP server
+  │   └── Client.java              # UDP client
+  ├── compile.bat                  # Compilation script
+  ├── run-server.bat               # Server launcher
+  ├── run-client.bat               # Client launcher
+  ├── quickstart.bat               # Auto-start all
+  ├── test-file.txt                # Sample file
+  ├── README.md                    # Full documentation
+  └── QUICKSTART.txt               # This file
+
+
+═══════════════════════════════════════════════════════════════════
+  SUPPORT & DOCUMENTATION
+═══════════════════════════════════════════════════════════════════
+
+  For detailed documentation, see:  README.md
+  
+  For code comments and explanations:
+    - Open any .java file in src/ directory
+    - All major blocks are commented
+  
+  System Requirements:
+    - Java JDK 8 or higher
+    - Windows OS (scripts are .bat files)
+    - 50MB free disk space
+
+
+═══════════════════════════════════════════════════════════════════
+
+  🚀 Ready to start? Just double-click: quickstart.bat
+
+═══════════════════════════════════════════════════════════════════

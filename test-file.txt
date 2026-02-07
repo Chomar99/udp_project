@@ -1,0 +1,23 @@
+Hello World!
+
+This is a test file for the UDP File Transfer System.
+
+The system demonstrates:
+- Real-time messaging between multiple clients
+- File sharing with packet segmentation
+- Reliable transfer over UDP
+- Progress tracking
+- Multi-threaded architecture
+
+This file can be sent using the /file command.
+
+Example usage:
+Alice > /file test-file.txt
+
+All connected clients (Bob, Charlie, etc.) will receive this file
+and it will be saved in their received_files directory.
+
+The file is split into 1024-byte chunks and transmitted over UDP
+with acknowledgment and retransmission for reliability.
+
+Enjoy testing the system!
